@@ -1,7 +1,9 @@
 # fklingler's dotfiles
 
- My own dotfiles, based upon [holman's](https://github.com/holman/dotfiles). I modified them to fit my needs.  
-The rest of the README is holman's.
+My own dotfiles, based upon [holman's](https://github.com/holman/dotfiles). I modified them to fit my needs.  
+I used some parts of [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) which are very cool, and which I were used to, since I used oh-my-zsh before using holman's dotfiles.
+
+The rest of the README is holman's. Everything still matches the changes I did.
 
 
 ## dotfiles
