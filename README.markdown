@@ -1,6 +1,7 @@
 # fklingler's dotfiles
 
- My own dotfiles, based upon [holman's](https://github.com/holman/dotfiles). I modified them to fit my needs.
+ My own dotfiles, based upon [holman's](https://github.com/holman/dotfiles). I modified them to fit my needs.  
+The rest of the README is holman's.
 
 
 ## dotfiles
