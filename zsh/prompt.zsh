@@ -6,7 +6,7 @@ function git-showprompt () {
     echo 'Activate git infos in prompt.'
     ZSH_THEME_GIT_PROMPT_TRIGGERED=1
     function triggered_git_prompt_info () {
-      echo "$(git_prompt_info)"
+      echo "$(GIT_PROMPT_PREFIX="%{$fg[magenta]%}g:(" GIT_PROMPT_SUFFIX=") %{$reset_color%}" git_prompt_info)"
     }
   else
     echo 'Deactivate git infos in prompt.'
@@ -16,7 +16,7 @@ function git-showprompt () {
     }
   fi
   return 0
-}
+} 
 alias gsp=git-showprompt
 
 function triggered_rbenv_prompt_info () { echo "" }
@@ -42,14 +42,3 @@ function grsp () { gsp && rsp }
 alias rgsp=grsp
 
 PROMPT='%{$fg[green]%}[%D{%T}]%{$fg[yellow]%}%n %{$fg[cyan]%}%~ $(triggered_git_prompt_info)$(triggered_rbenv_prompt_info)${return_code}%{$reset_color%}-> '
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}g:("
-ZSH_THEME_GIT_PROMPT_SUFFIX=") %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="⚡"
-ZSH_THEME_GIT_PROMPT_ADDED="+"
-ZSH_THEME_GIT_PROMPT_MODIFIED="✹"
-ZSH_THEME_GIT_PROMPT_DELETED="✖"
-ZSH_THEME_GIT_PROMPT_RENAMED="➜"
-ZSH_THEME_GIT_PROMPT_UNMERGED="="
-ZSH_THEME_GIT_PROMPT_UNTRACKED="✭"
-

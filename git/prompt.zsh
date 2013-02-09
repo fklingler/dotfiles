@@ -1,0 +1,80 @@
+# Prompt appareance.
+#GIT_PROMPT_PREFIX=""
+#GIT_PROMPT_SUFFIX=""
+GIT_PROMPT_SEPARATOR="|"
+GIT_PROMPT_TRACKING_PREFIX=":"
+GIT_PROMPT_BEHIND_PREFIX="↓"
+GIT_PROMPT_AHEAD_PREFIX="↑"
+GIT_PROMPT_STAGED_PREFIX="●"
+GIT_PROMPT_CONFLICTS_PREFIX="!"
+GIT_PROMPT_CHANGED_PREFIX="+"
+GIT_PROMPT_UNTRACKED_PREFIX="~"
+GIT_PROMPT_CLEAN_SYMBOL="✔"
+
+function update_current_git_prompt_vars() {
+  unset _GIT_STATUS
+
+  saveIFS=$IFS
+  IFS=$'\n'
+  _GIT_STATUS=($(git-prompt-status))
+  IFS=$saveIFS
+    
+  _GIT_PROMPT_BRANCH=${_GIT_STATUS[1]}
+  _GIT_PROMPT_REMOTE=${_GIT_STATUS[2]}
+  if [[ "." == "$_GIT_PROMPT_REMOTE" ]]; then
+    unset _GIT_PROMPT_REMOTE
+  fi
+  _GIT_PROMPT_BEHIND=${_GIT_STATUS[3]}
+  _GIT_PROMPT_AHEAD=${_GIT_STATUS[4]}
+  _GIT_PROMPT_STAGED=${_GIT_STATUS[5]}
+  _GIT_PROMPT_CONFLICTS=${_GIT_STATUS[6]}
+  _GIT_PROMPT_CHANGED=${_GIT_STATUS[7]}
+  _GIT_PROMPT_UNTRACKED=${_GIT_STATUS[8]}
+  _GIT_PROMPT_CLEAN=${_GIT_STATUS[9]}
+}
+
+function git_prompt_info() {
+  local STATUS=""
+
+  update_current_git_prompt_vars
+
+  if [ -n "$_GIT_STATUS" ]; then
+    STATUS="$GIT_PROMPT_PREFIX$_GIT_PROMPT_BRANCH"
+
+    if [ -n "$_GIT_PROMPT_REMOTE" ]; then
+      STATUS="$STATUS$GIT_PROMPT_TRACKING_PREFIX$_GIT_PROMPT_REMOTE"
+    fi
+    if [[ "$_GIT_PROMPT_BEHIND" != "0" ]]; then
+      STATUS="$STATUS$GIT_PROMPT_BEHIND_PREFIX$_GIT_PROMPT_BEHIND"
+    fi
+    if [[ "$_GIT_PROMPT_AHEAD" != "0" ]]; then
+      STATUS="$STATUS$GIT_PROMPT_AHEAD_PREFIX$_GIT_PROMPT_AHEAD"
+    fi
+
+    STATUS="$STATUS$GIT_PROMPT_SEPARATOR"
+
+    if [[ "$_GIT_PROMPT_STAGED" != "0" ]]; then
+      STATUS="$STATUS$GIT_PROMPT_STAGED_PREFIX$_GIT_PROMPT_STAGED"
+      clean="0"
+    fi
+    if [[ "$_GIT_PROMPT_CONFLICTS" != "0" ]]; then
+      STATUS="$STATUS$GIT_PROMPT_CONFLICTS_PREFIX$_GIT_PROMPT_CONFLICTS"
+      clean="0"
+    fi
+    if [[ "$_GIT_PROMPT_CHANGED" != "0" ]]; then
+      STATUS="$STATUS$GIT_PROMPT_CHANGED_PREFIX$_GIT_PROMPT_CHANGED"
+      clean="0"
+    fi
+    if [[ "$_GIT_PROMPT_UNTRACKED" != "0" ]]; then
+      STATUS="$STATUS$GIT_PROMPT_UNTRACKED_PREFIX$_GIT_PROMPT_UNTRACKED"
+      clean="0"
+    fi
+    if [[ "$_GIT_PROMPT_CLEAN" == "1" ]]; then
+      STATUS="$STATUS$GIT_PROMPT_CLEAN_SYMBOL"
+    fi
+
+    STATUS="$STATUS$GIT_PROMPT_SUFFIX"
+  fi
+
+  echo $STATUS
+}
