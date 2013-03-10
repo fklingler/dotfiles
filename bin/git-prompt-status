@@ -39,6 +39,8 @@ else:
   clean = '0'
 
 remote = ''
+behind = 0
+ahead = 0
 
 if not branch: # not on any branch
   branch = symbols['prehash']+ Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0][:-1]
