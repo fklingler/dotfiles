@@ -6,3 +6,5 @@ alias ll='ls -lahG'
 alias l='ls -lhG'
 
 alias cdl='dirs -v'
+
+alias reopen='open -na'
