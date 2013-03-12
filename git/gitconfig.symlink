@@ -1,0 +1,33 @@
+[user]
+  name = François KLINGLER
+  email = francois@fklingler.com
+
+[core]
+  editor = vim --noplugin
+  excludesfile = ~/.gitignore
+  pager = less -F -X
+
+[push]
+  default = simple
+
+[merge]
+  tool = opendiff
+
+[help]
+  autocorrect = 1
+
+[color]
+  branch = auto
+  status = auto
+  diff = auto
+  grep = auto
+
+[alias]
+  ci = commit
+  co = checkout
+  st = status
+  sb = status -sb
+  graph = log --graph --pretty=format:'%C(red)%h%Creset %C(yellow)%cr%Creset %C(bold blue)%an%Creset %Cgreen%d%Creset %s' --date=short --date-order
+  ls = log --pretty=format:'%C(red)%h%Creset %C(yellow)%cr%Creset %C(bold blue)%an%Creset %s' --date=short --date-order
+  amend = commit --amend -C HEAD
+  credit = commit --amend --author "$1 <$2>" -C HEAD
