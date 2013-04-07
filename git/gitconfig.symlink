@@ -31,3 +31,6 @@
   ls = log --pretty=format:'%C(red)%h%Creset %C(yellow)%cr%Creset %C(bold blue)%an%Creset %s' --date=short --date-order
   amend = commit --amend -C HEAD
   credit = commit --amend --author "$1 <$2>" -C HEAD
+  ignored = ls-files --others -i --exclude-standard
+  purr = pull --rebase
+  standup = git log --since yesterday --author francois@fklingler.com
