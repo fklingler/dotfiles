@@ -1,0 +1,2 @@
+file=$(printf "%q" $1)
+scp -r francois@5.39.86.36:"/home/transmission/downloads/$file" ~/Downloads/.

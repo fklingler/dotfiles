@@ -20,6 +20,8 @@ setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 setopt AUTO_CD
 setopt CDABLEVARS
+setopt RC_QUOTES
+setopt COMBINING_CHARS
 
 setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
